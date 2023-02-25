@@ -42,4 +42,8 @@ elseif PlaceId == 6728870912 then
 --// Lucky Blocks Battlegrounds
 elseif PlaceId == 662417684 then
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Lucky%20Blocks%20Battlegrounds/Main.lua")()
+	
+--// Ninja Legends
+elseif PlaceId == 3956818381 then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Ninja%20Legends/Main.lua")()
 end
