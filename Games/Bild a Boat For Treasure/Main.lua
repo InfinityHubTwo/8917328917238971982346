@@ -106,7 +106,7 @@ local Label = Tab:CreateLabel("Hub Version: 1.0.0")
 --// Player
 local Tab = Window:CreateTab("Local Player")
 local Section = Tab:CreateSection("--// Client", true)
-local Paragraph = Tab:CreateParagraph({Title = "Farming", Content = "Selecione uma das opções para Auto Farmar automaticamente."})
+local Paragraph = Tab:CreateParagraph({Title = "Info", Content = "Scripts para o LocalPlayer."})
 
 local Toggle = Tab:CreateToggle({
     Name = "Water God Mode",
