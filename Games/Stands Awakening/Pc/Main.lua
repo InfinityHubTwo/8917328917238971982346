@@ -31,6 +31,7 @@ local CheckSpeed = plr.Character.Humanoid.WalkSpeed
 local CheckJump = plr.Character.Humanoid.JumpPower
 local CheckHealth = plr.Character.Humanoid.Health
 local CheckStand = plr.Backpack.ClassName == "LocalScript"
+local AntiTs = game:GetService("Lighting").TS
 local Settings
 
 
