@@ -49,6 +49,55 @@ end end
 local Settings
 local plr = game:GetService("Players").LocalPlayer
 
+local function starting()
+    local okL = {
+        "getServerTimeRemote",
+    }
+    
+    local Events = {
+        Fire = true, 
+        Invoke = true, 
+        FireServer = true, 
+        InvokeServer = true,
+        OnClientEvent = true,
+    }
+    
+    local gameMeta = getrawmetatable(game)
+    local psuedoEnv = {
+        ["__index"] = gameMeta.__index,
+        ["__namecall"] = gameMeta.__namecall;
+    }
+    setreadonly(gameMeta, false)
+    gameMeta.__index, gameMeta.__namecall = newcclosure(function(self, index, ...)
+        if Events[index] then
+            if table.find(okL, self.Name) and not checkcaller() and getnilinstances() then
+                return nil
+            end
+        end
+        return psuedoEnv.__index(self, index, ...)
+    end)
+    setreadonly(gameMeta, true)
+    rconsoleinfo("Starting dupe ...")
+end
+local function throwaccept()
+    local args = {
+        [1] = "acceptTrade"
+    }
+    
+    game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("tradingEvent"):FireServer(unpack(args))   
+                 
+end  
+local function throwrejoin()
+    local ts = game:GetService("TeleportService")
+
+   local p = game:GetService("Players").LocalPlayer
+
+   ts:Teleport(game.PlaceId, p)
+end
+local function throwdupe()
+    game:GetService("Players").LocalPlayer:Kick("Duped")
+end
+
 
 
 
@@ -221,13 +270,45 @@ local Tab = Window:CreateTab("Islands")
 local Section = Tab:CreateSection("--// Unlock All Islands", true)
 local Paragraph = Tab:CreateParagraph({Title = "Info", Content = "Desbloqueia todas as ilhas."})
 
-local Button = Tab:CreateButton({
-   Name = "Unlock All Islands",
-   Callback = function()
-		for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetDescendants()) do
-			if v:IsA("TouchTransmitter") then
-				firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+local Toggle = Tab:CreateToggle({
+    Name = "Unlock All Islands",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(State)
+		Settings = State
+		if Settings then
+			while wait(1) and Settings do
+				for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetDescendants()) do
+					if v:IsA("TouchTransmitter") then
+						firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0) --0 is touch
+					end
+				end
 			end
 		end
-   end,
+    end,
+})
+
+
+
+--// Dupe
+local Tab = Window:CreateTab("Dupe")
+local Section = Tab:CreateSection("--// Dupe Pets", true)
+local Paragraph = Tab:CreateParagraph({Title = "Info", Content = "A pessoa na qual você dará os pets tem que aceita primeiro, depois aperte na opção Dupe e os pets serão duplicados."})
+
+local Toggle = Tab:CreateToggle({
+    Name = "Dupe",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(State)
+		Settings = State
+		if Settings then
+			while wait() and Settings do
+				starting()
+            	throwaccept()
+            	wait(0.2)
+            	throwrejoin()
+            	throwdupe()
+			end
+		end
+    end,
 })
