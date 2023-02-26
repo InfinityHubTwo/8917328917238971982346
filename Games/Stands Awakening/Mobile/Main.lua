@@ -1,4 +1,4 @@
---// Stands awakening Pc
+--// Stands Awakening Pc
 
 
 
@@ -31,6 +31,7 @@ local CheckSpeed = plr.Character.Humanoid.WalkSpeed
 local CheckJump = plr.Character.Humanoid.JumpPower
 local CheckHealth = plr.Character.Humanoid.Health
 local CheckStand = plr.Backpack.ClassName == "LocalScript"
+local Settings
 
 
 
@@ -314,6 +315,23 @@ local Button = Tab:CreateButton({
 	    game:GetService("ReplicatedStorage").Main.Death:FireServer(unpack(args))
    end,
 })
+local Toggle = Tab:CreateToggle({
+   Name = "Anti Time Stop",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(State)
+		Settings = State 
+		if Settings then
+			while wait(.5) and Settings do
+				if AntiTs.Value == true then
+					wait(1)
+					AntiTs.Value = false
+				end
+			end
+		end
+   end,
+})
+local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 --// GER / GE
@@ -341,6 +359,7 @@ local Button = Tab:CreateButton({
 		game:GetService("ReplicatedStorage").Main.Input:FireServer(ohString1, ohString2)
    end,
 })
+local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 --// Shadow Dio
@@ -440,6 +459,7 @@ local Toggle = Tab:CreateToggle({
 		end
    end,
 })
+local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 --// Karls 
@@ -457,6 +477,7 @@ local Button = Tab:CreateButton({
 		game:GetService("ReplicatedStorage").Main.Transparency:FireServer(unpack(args))
    end,
 })
+local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 --// OMS / SMOT
@@ -474,6 +495,7 @@ local Button = Tab:CreateButton({
 		game:GetService("ReplicatedStorage").Main.Input:FireServer(unpack(args))
    end,
 })
+local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 --// OMS / SMOT
@@ -578,6 +600,7 @@ local Button = Tab:CreateButton({
 	    game:GetService("ReplicatedStorage").Main.Input:FireServer(unpack(args))
    end,
 })
+local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 
@@ -1343,136 +1366,74 @@ local Button = Tab:CreateButton({
    Info = "Click to use Invisible script FE.", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-      --// Credits: Domain X
-
-      local Player = game:GetService("Players").LocalPlayer
-	
-      if invisRunning then return end
-      invisRunning = true
-      -- Full credit to AmokahFox @V3rmillion
-      local Player = game:GetService("Players").LocalPlayer
-      repeat wait(.1) until Player.Character
-      local Character = Player.Character
-      Character.Archivable = true
-      local IsInvis = false
-      local IsRunning = true
-      local InvisibleCharacter = Character:Clone()
-      InvisibleCharacter.Parent = game:GetService'Lighting'
-      local Void = workspace.FallenPartsDestroyHeight
-      InvisibleCharacter.Name = ""
-      local CF
-   
-      local invisFix = game:GetService("RunService").Stepped:Connect(function()
-         pcall(function()
-            local IsInteger
-            if tostring(Void):find'-' then
-               IsInteger = true
-            else
-               IsInteger = false
-            end
-            local Pos = Player.Character.HumanoidRootPart.Position
-            local Pos_String = tostring(Pos)
-            local Pos_Seperate = Pos_String:split(', ')
-            local X = tonumber(Pos_Seperate[1])
-            local Y = tonumber(Pos_Seperate[2])
-            local Z = tonumber(Pos_Seperate[3])
-            if IsInteger == true then
-               if Y <= Void then
-                  Respawn()
-               end
-            elseif IsInteger == false then
-               if Y >= Void then
-                  Respawn()
-               end
-            end
-         end)
-      end)
-   
-      for i,v in pairs(InvisibleCharacter:GetDescendants())do
-         if v:IsA("BasePart") then
-            if v.Name == "HumanoidRootPart" then
-               v.Transparency = 1
-            else
-               v.Material = Enum.Material.ForceField
-               v.Color = Color3.fromRGB(25,25,25)
-            end
-         end
-      end
-   
-      function Respawn()
-         IsRunning = false
-         if IsInvis == true then
-            pcall(function()
-               Player.Character = Character
-               wait()
-               Character.Parent = workspace
-               Character:FindFirstChildWhichIsA'Humanoid':Destroy()
-               IsInvis = false
-               InvisibleCharacter.Parent = nil
-               invisRunning = false
-            end)
-         elseif IsInvis == false then
-            pcall(function()
-               Player.Character = Character
-               wait()
-               Character.Parent = workspace
-               Character:FindFirstChildWhichIsA'Humanoid':Destroy()
-               TurnVisible()
-            end)
-         end
-      end
-   
-      local invisDied
-      invisDied = InvisibleCharacter:FindFirstChildOfClass'Humanoid'.Died:Connect(function()
-         Respawn()
-         invisDied:Disconnect()
-      end)
-   
-      if IsInvis == true then return end
-      IsInvis = true
-      CF = workspace.CurrentCamera.CFrame
-      local CF_1 = Player.Character.HumanoidRootPart.CFrame
-      Character:MoveTo(Vector3.new(0,math.pi*1000000,0))
-      workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
-      wait(.2)
-      workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
-      InvisibleCharacter = InvisibleCharacter
-      Character.Parent = game:GetService'Lighting'
-      InvisibleCharacter.Parent = workspace
-      InvisibleCharacter.HumanoidRootPart.CFrame = CF_1
-      Player.Character = InvisibleCharacter
-      workspace.CurrentCamera:remove()
-      wait(.1)
-      repeat wait() until Player.Character ~= nil
-      workspace.CurrentCamera.CameraSubject = Player.Character:FindFirstChildWhichIsA('Humanoid')
-      workspace.CurrentCamera.CameraType = "Custom"
-      Player.CameraMinZoomDistance = 0.5
-      Player.CameraMaxZoomDistance = 400
-      Player.CameraMode = "Classic"
-      Player.Character.Head.Anchored = false
-      Player.Character.Animate.Disabled = true
-      Player.Character.Animate.Disabled = false
-   
-      function TurnVisible()
-         if IsInvis == false then return end
-         invisFix:Disconnect()
-         invisDied:Disconnect()
-         CF = workspace.CurrentCamera.CFrame
-         Character = Character
-         local CF_1 = Player.Character.HumanoidRootPart.CFrame
-         Character.HumanoidRootPart.CFrame = CF_1
-         InvisibleCharacter:Destroy()
-         Player.Character = Character
-         Character.Parent = workspace
-         IsInvis = false
-         Player.Character.Animate.Disabled = true
-         Player.Character.Animate.Disabled = false
-         invisDied = Character:FindFirstChildOfClass'Humanoid'.Died:Connect(function()
-            Respawn()
-            invisDied:Disconnect()
-         end)
-         invisRunning = false
-      end
+		local offset = 1100 --how far you are away from your camera when invisible
+		local LocalPlayer = game.Players.LocalPlayer
+		local Backpack = LocalPlayer.Backpack
+		local Character = LocalPlayer.Character
+		local invisible = false
+		local grips = {}
+		local heldTool
+		local gripChanged
+		local handle
+		local weld
+		function setDisplayDistance(distance)
+		   for _,player in pairs(game.Players:GetPlayers()) do if player.Character and player.Character:FindFirstChildWhichIsA("Humanoid") then player.Character:FindFirstChildWhichIsA("Humanoid").NameDisplayDistance = distance player.Character:FindFirstChildWhichIsA("Humanoid").HealthDisplayDistance = distance end end
+		end
+		local tool = Instance.new("Tool", Backpack)
+		tool.Name = "Ghostify [Disabled]"
+		tool.RequiresHandle = false
+		tool.CanBeDropped = false
+		tool.Equipped:Connect(function() wait()
+		   if not invisible then
+		       invisible = true
+		       tool.Name = "Ghostify [Enabled]"
+		       if handle then handle:Destroy() end if weld then weld:Destroy() end
+		       handle = Instance.new("Part", workspace) handle.Name = "Handle" handle.Transparency = 1 handle.CanCollide = false handle.Size = Vector3.new(2, 1, 1)
+		       weld = Instance.new("Weld", handle) weld.Part0 = handle weld.Part1 = Character.HumanoidRootPart weld.C0 = CFrame.new(0, offset-1.5, 0)
+		       setDisplayDistance(offset+100)
+		       workspace.CurrentCamera.CameraSubject = handle
+		       Character.HumanoidRootPart.CFrame = Character.HumanoidRootPart.CFrame * CFrame.new(0, offset, 0)
+		       Character.Humanoid.HipHeight = offset
+		       Character.Humanoid:ChangeState(11)
+		       for _,child in pairs(Backpack:GetChildren()) do if child:IsA("Tool") and child ~= tool then grips[child] = child.Grip end end
+		   elseif invisible then
+		       invisible = false
+		       tool.Name = "Ghostify [Disabled]"
+		       if handle then handle:Destroy() end if weld then weld:Destroy() end
+		       for _,child in pairs(Character:GetChildren()) do if child:IsA("Tool") then child.Parent = Backpack end end
+		       for tool,grip in pairs(grips) do if tool then tool.Grip = grip end end
+		       heldTool = nil
+		       setDisplayDistance(100)
+		       workspace.CurrentCamera.CameraSubject = Character.Humanoid
+		       Character.Animate.Disabled = false
+		       Character.HumanoidRootPart.CFrame = Character.HumanoidRootPart.CFrame * CFrame.new(0, -offset, 0)
+		       Character.Humanoid.HipHeight = 0
+		       Character.Humanoid:ChangeState(11)
+		   end
+		   tool.Parent = Backpack
+		end)
+		Character.ChildAdded:Connect(function(child) wait()
+		   if invisible and child:IsA("Tool") and child ~= heldTool and child ~= tool then
+		       heldTool = child
+		       local lastGrip = heldTool.Grip
+		       if not grips[heldTool] then grips[heldTool] = lastGrip end
+		       for _,track in pairs(Character.Humanoid:GetPlayingAnimationTracks()) do track:Stop() end
+		       Character.Animate.Disabled = true
+		       heldTool.Grip = heldTool.Grip*(CFrame.new(0, offset-1.5, 1.5) * CFrame.Angles(math.rad(-90), 0, 0))
+		       heldTool.Parent = Backpack
+		       heldTool.Parent = Character
+		       if gripChanged then gripChanged:Disconnect() end
+		       gripChanged = heldTool:GetPropertyChangedSignal("Grip"):Connect(function() wait()
+		           if not invisible then gripChanged:Disconnect() end
+		           if heldTool.Grip ~= lastGrip then
+		               lastGrip = heldTool.Grip*(CFrame.new(0, offset-1.5, 1.5) * CFrame.Angles(math.rad(-90), 0, 0))
+		               heldTool.Grip = lastGrip
+		               heldTool.Parent = Backpack
+		               heldTool.Parent = Character
+		           end
+		       end)
+		   end
+		end)
    end,
 })
 local Button = Tab:CreateButton({
