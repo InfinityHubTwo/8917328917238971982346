@@ -1,4 +1,4 @@
---// Stands Awakening Pc
+--// Stands Awakening Mobile
 
 
 
@@ -33,6 +33,160 @@ local CheckHealth = plr.Character.Humanoid.Health
 local CheckStand = plr.Backpack.ClassName == "LocalScript"
 local AntiTs = game:GetService("Lighting").TS
 local Settings
+local function PrintItem()
+	print(Option, "| Item Sniperded")
+end
+getgenv().SelectOptions = nil
+local function DoStuff()
+	if getgenv().SelectOptions == "Arrow" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Arrow" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+
+	elseif getgenv().SelectOptions == "Requiem Arrow" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Requiem Arrow" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+
+	elseif getgenv().SelectOptions == "Rokakaka Fruit" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Rokakaka Fruit" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+
+	elseif getgenv().SelectOptions == "Vampire Mask" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Vampire Mask" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+
+	elseif getgenv().SelectOptions == "Frog" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Frog" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+
+	elseif getgenv().SelectOptions == "Banknote" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Banknote" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "DIO's Diary" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "DIO's Diary" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "Dio's Skull" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Dio's Skull" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "Camera" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Camera" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "Pot Platinum’s Diary" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Pot Platinum’s Diary" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "Red Heart" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Red Heart" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "True Requiem Arrow" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "True Requiem Arrow" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "Ornstein's Spear" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Ornstein's Spear" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+
+	elseif getgenv().SelectOptions == "Aja Mask" then
+	    for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+        	if v:IsA("Tool") and v.Name == "Aja Mask" then
+            	pcall(function()
+                	game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            	end)
+        	end
+    	end
+	end
+end
+local items = {
+	"Arrow",
+	"Requiem Arrow",
+	"Rokakaka Fruit", 
+	"Vampire Mask",
+	"Frog",
+	"Banknote",
+	"DIO's Diary", 
+	"Dio's Skull", 
+	"Camera", 
+	"Pot Platinum’s Diary",
+	"Red Heart",
+	"True Requiem Arrow",
+	"Ornstein's Spear",
+	"Aja Mask",
+
+}
 
 
 
@@ -918,13 +1072,23 @@ local Toggle = Tab:CreateToggle({
 		end
    end,
 })
+
+local Section = Tab:CreateSection("--// Item Sniper", true)
+local Paragraph = Tab:CreateParagraph({Title = "Info", Content = "Esta função foi adicionada recentemente, qualquer erro ou bug avise o support."})
 local Dropdown = Tab:CreateDropdown({
-   Name = "Item Sniper, Soon..",
-   Options = {"Arrow", "Rokakaka", "Dio Diary", "Dio Skull", "Camera", "POT"},
-   CurrentOption = "Option 1",
+   Name = "Select Item",
+   Options = items,
+   CurrentOption = "",
    Flag = "Dropdown1",
    Callback = function(Option)
-       print(Option)
+		getgenv().SelectOptions = Option
+		PrintItem()
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Item Sniper",
+   Callback = function()
+		DoStuff()
    end,
 })
 
