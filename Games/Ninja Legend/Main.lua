@@ -161,6 +161,49 @@ local function OpenCrystal()
 end
 
 
+local Bosses = {
+	"RobotBoss",
+	"EternalBoss",
+	"AncientMagmaBoss",
+}
+local function AutoBosses()
+	if getgenv().SelectOption == "RobotBoss" then
+		
+	end
+end
+local function AutoHoops()
+	local ohString1 = "useHoop"
+	local ohInstance2 = workspace.Hoops.Hoop
+	game:GetService("ReplicatedStorage").rEvents.hoopEvent:FireServer(ohString1, ohInstance2)
+end
+
+--<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
+
+--//  AFK FARM FUNCTIONS
+local TweenService 		= 		game:GetService('TweenService')
+local Player 			= 		game.Players.LocalPlayer
+local Char 				= 		Player.Character or Player.CharacterAdded:wait()
+local Position1 	= 	  Vector3.new(1855.973, 38.706, -6790.186)
+local Position2 	= 	  Vector3.new(98.164, 91245.539, 123.954)
+local t1 	  = 	TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Position1)}  )
+local t2 	  = 	TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Position2)}  )
+--// Function
+local function AutoFarm()
+	t1:Play()
+	wait(3)
+	task.spawn( function()
+		repeat task.wait()
+			game:GetService("Players").LocalPlayer.ninjaEvent:FireServer("swingKatana")
+		until 1+1==2
+	end)
+
+	wait(20)
+	t2:Play()
+end
+
+--<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
+
+
 
 --// Rayfiel Libray
 getgenv().SecureMode = true
@@ -187,7 +230,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "SiriusKey",
       SaveKey = true,
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = "piA&dE)XkO=Hx!StzRvJBLswbs)ECP"
+      Key = ""
    }
 })
 
@@ -274,6 +317,7 @@ local Button = Tab:CreateButton({
    end,
 })
 
+
 local Section = Tab:CreateSection("--// Farm Swing and Sell", true)
 local Toggle = Tab:CreateToggle({
     Name = "Auto Swing",
@@ -323,6 +367,7 @@ local Toggle = Tab:CreateToggle({
     end,
 })
 
+
 local Section = Tab:CreateSection("--// Auto Crystal", true)
 local Dropdown = Tab:CreateDropdown({
    Name = "Select Cystal",
@@ -342,6 +387,63 @@ local Toggle = Tab:CreateToggle({
 		if Settings then
 			while wait() and Settings do
 				OpenCrystal()
+			end
+		end
+   end,
+})
+
+
+local Section = Tab:CreateSection("--// Auto Boss", true)
+local Dropdown = Tab:CreateDropdown({
+   Name = "Select Boss",
+   Options = Bosses,
+   CurrentOption = "Option 1",
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Option)
+		getgenv().SelectOption = Option
+   end,
+})
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Boss (Soon..)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(State)
+		Settings = State
+		if Settings then
+			while wait() and Settings do
+				print("Soon")
+			end
+		end
+   end,
+})
+
+
+local Section = Tab:CreateSection("--// Auto Hoops", true)
+local Toggle = Tab:CreateToggle({
+    Name = "Auto Hoops",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(State)
+		Settings = State
+		while wait(.1) and Settings do
+			AutoHoops()
+		end
+    end,
+})
+
+
+local Section = Tab:CreateSection("--// Afk Farm", true)
+local Paragraph = Tab:CreateParagraph({Title = "Info", Content = 'Requer rank "Mestres dos elementos+", lembrando que pode lagar um pouco recomendo que desative as particulas. Se n estiver gostando use um AutoCliker'})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Afk Farm",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(State)
+		Settings = State
+		if Settings then
+			while wait(4) and Settings do
+				AutoFarm()
 			end
 		end
    end,
@@ -372,6 +474,7 @@ local Toggle = Tab:CreateToggle({
 		end
     end,
 })
+
 
 
 
