@@ -12,7 +12,7 @@ Games:
 [+] = [ { Build a Boat For Treasure } ]
 [+] = [ { World of Stands } ]
 [+] = [ { Lucky Blocks Battlegrounds } ]
-
+[+] = [ { Ninja Legends } ]
 
 --]===================================================]
 
