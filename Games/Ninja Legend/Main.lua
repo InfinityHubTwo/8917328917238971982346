@@ -98,6 +98,67 @@ local function throwdupe()
     game:GetService("Players").LocalPlayer:Kick("Duped")
 end
 
+getgenv().SelectOption = nil
+local Crystals = {
+	"Astral Crystal",
+	"Blue Crystal",
+	"Enchanted Crystal",
+	"Eternal Crystal",
+	"Frozen Crystal",
+	"Galaxy Crystal",
+	"Golden Crystal",
+	"Inferno Crystal",
+	"Infinity Void Crystal",
+	"Purple Crystal",
+	"Secret Blades Crystal",
+	"Storm Crystal",
+	"Thunder Crystal",
+	"Ultra Shockwave Crystal",
+}
+local function OpenCrystal()
+	if getgenv().SelectOption == "Astral Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Astral Crystal")
+
+	elseif getgenv().SelectOption == "Blue Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Blue Crystal")
+
+	elseif getgenv().SelectOption == "Enchanted Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Enchanted Crystal")
+
+	elseif getgenv().SelectOption == "Eternal Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Eternal Crystal")
+
+	elseif getgenv().SelectOption == "Frozen Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Frozen Crystal")
+
+	elseif getgenv().SelectOption == "Galaxy Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Galaxy Crystal")
+
+	elseif getgenv().SelectOption == "Golden Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Golden Crystal")
+
+	elseif getgenv().SelectOption == "Inferno Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Inferno Crystal")
+
+	elseif getgenv().SelectOption == "Infinity Void Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Infinity Void Crystal")
+
+	elseif getgenv().SelectOption == "Purple Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Purple Crystal")
+
+	elseif getgenv().SelectOption == "Secret Blades Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Secret Blades Crystal")
+
+	elseif getgenv().SelectOption == "Storm Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Storm Crystal")
+
+	elseif getgenv().SelectOption == "Thunder Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Thunder Crystal")
+
+	elseif getgenv().SelectOption == "Ultra Shockwave Crystal" then
+			game:GetService("ReplicatedStorage").rEvents.openCrystalRemote:InvokeServer("openCrystal", "Ultra Shockwave Crystal")
+	end
+end
 
 
 
@@ -260,6 +321,30 @@ local Toggle = Tab:CreateToggle({
 			game:GetService("Players").LocalPlayer.ninjaEvent:FireServer("buyAllBelts","Blazing Vortex Island")
 		end
     end,
+})
+
+local Section = Tab:CreateSection("--// Auto Crystal", true)
+local Dropdown = Tab:CreateDropdown({
+   Name = "Select Cystal",
+   Options = Crystals,
+   CurrentOption = "Option 1",
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Option)
+		getgenv().SelectOption = Option
+   end,
+})
+local Toggle = Tab:CreateToggle({
+   Name = "Auto Crystal (No Animation)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(State)
+		Settings = State
+		if Settings then
+			while wait() and Settings do
+				OpenCrystal()
+			end
+		end
+   end,
 })
 
 
