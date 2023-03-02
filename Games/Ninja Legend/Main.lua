@@ -1,7 +1,16 @@
 --// Ninja Legend
 
 
+print[[
+	:
+	
+	--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--
 
+	- Infinity Hub |  Loaded InfHub Ninja Legends
+	- Infinity Hub |  Have Fun
+
+	--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>--<>-- 
+]]
 
 
 
