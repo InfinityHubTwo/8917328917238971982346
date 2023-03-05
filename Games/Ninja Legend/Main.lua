@@ -169,6 +169,140 @@ local function OpenCrystal()
 	end
 end
 
+--<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
+
+--// Collect all chest
+local function FeKill()
+	game:GetService("Players").LocalPlayer.Character.Humanoid.Health = 0
+end
+
+
+local TweenService 		= 		game:GetService('TweenService')
+local Player 			= 		game.Players.LocalPlayer
+local Char 				= 		Player.Character or Player.CharacterAdded:wait()
+local Chest1 			= 	  	Vector3.new(36.509, 28262.557, 52.999)
+local Chest2 			= 	  	Vector3.new(429.406, 74564.469, -51.228)
+local Chest3 			= 	  	Vector3.new(46.385, 772.894, -180.719)
+local Chest4 			= 	  	Vector3.new(34.042, 13686.296, 61.769)
+local Chest5 			= 	  	Vector3.new(-133.609, 39439.184, 168.25)
+local Chest6 			= 	  	Vector3.new(523.742, 149.138, 367.945)
+local Chest7 			= 	  	Vector3.new(424.7, 52729.375, -51.62)
+local Chest8 			= 	  	Vector3.new(-63.143, 9.894, 191.883)
+local Chest9 			= 	  	Vector3.new(11.232, 9298.025, 42.026)
+local Chest10 			= 	  	Vector3.new(425.248, 39439.184, -47.775)
+local Chest11 			= 	  	Vector3.new(207.716, 4054.094, 60.408)
+local Chest12 			= 	  	Vector3.new(-46.072, 33363.348, -183.772)
+local Chest13 			= 	  	Vector3.new(34.239, 5663.447, 54.605)
+local Chest14 			= 	  	Vector3.new(34.191, 17692.592, 53.851)
+local Chest15 			= 	  	Vector3.new(425.721, 70392.781, -51.555)
+local Chest16 			= 	  	Vector3.new(428.273, 79868.602, -50.783)
+local Chest17 			= 	  	Vector3.new(33.76, 24076.285, 54.364)
+local Chest18 			= 	  	Vector3.new(429.553, 46132.172, -50.634)
+
+
+local t1 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest1)}  )
+local t2 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest2)}  )
+local t3 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest3)}  )
+local t4 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest4)}  )
+local t5 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest5)}  )
+local t6 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest6)}  )
+local t7 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest7)}  )
+local t8 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest8)}  )
+local t9 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest9)}  )
+local t10 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest10)}  )
+local t11 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest11)}  )
+local t12 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest12)}  )
+local t13 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest13)}  )
+local t14 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest14)}  )
+local t15 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest15)}  )
+local t16 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest16)}  )
+local t17 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest17)}  )
+local t18 	  			= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Chest18)}  )
+
+
+local function CollectAllChest()
+		t1:Play()
+	wait(3)
+		t2:Play()
+	wait(3)
+		t3:Play()
+	wait(3)
+		t4:Play()
+	wait(3)
+		t5:Play()
+	wait(3)
+		t6:Play()
+	wait(3)
+		t7:Play()
+	wait(3)
+		t8:Play()
+	wait(3)
+		t9:Play()
+	wait(3)
+		t10:Play()
+	wait(3)
+		t11:Play()
+	wait(3)
+		t12:Play()
+	wait(3)
+		t13:Play()
+	wait(3)
+		t14:Play()
+	wait(3)
+		t15:Play()
+	wait(3)
+		t16:Play()
+	wait(3)
+		t17:Play()
+	wait(3)
+		t18:Play()
+	wait(3)
+end
+
+
+--<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
+
+
+
+
+
+--<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
+--[[ Auto Boss
+
+--// Auto Bosses \\--
+local AncienteMagmaBoss 	= 		game:GetService("Workspace").bossFolder.AncientMagmaBoss
+local EternalBoss 			= 		game:GetService("Workspace").bossFolder.EternalBoss
+local RobotBoss 			=		game:GetService("Workspace").bossFolder.RobotBoss
+
+
+local TweenService 			= 		game:GetService('TweenService')
+local Player 				= 		game.Players.LocalPlayer
+local Char 					= 		Player.Character or Player.CharacterAdded:wait()
+local Position1 			= 	  	Vector3.new(AncienteMagmaBoss.UpperTorso.Position)
+local Position2 			= 	  	Vector3.new(EternalBoss.UpperTorso.position)
+local Position3				=		Vector3.new(RobotBoss.UpperTorso.position)
+local t1 	  				= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Position1)}  )
+local t2 	  				= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Position2)}  )
+local t3					= 		TweenService:create(Char.Humanoid.RootPart,TweenInfo.new(2), {CFrame = CFrame.new(Position3)}  )
+
+
+if AncienteMagmaBoss then
+local function AncienteMagmaBoss()
+	t1:Play()
+end
+end
+
+if EternalBoss then
+local function EternalBoss()
+	t2:Play()
+end
+end
+
+if RobotBoss then
+local function RobotBoss()
+	t3:Play()
+end
+end
 
 local Bosses = {
 	"RobotBoss",
@@ -177,14 +311,26 @@ local Bosses = {
 }
 local function AutoBosses()
 	if getgenv().SelectOption == "RobotBoss" then
+		AncienteMagmaBoss()
 		
+	elseif getgenv().SelectOption == "EternalBoss" then
+		EternalBoss()
+		
+	elseif getgenv().SelectOption == "AncientMagmaBoss" then
+		AncienteMagmaBoss()
 	end
 end
+--]]
+
+--<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
+
+
 local function AutoHoops()
 	local ohString1 = "useHoop"
 	local ohInstance2 = workspace.Hoops.Hoop
 	game:GetService("ReplicatedStorage").rEvents.hoopEvent:FireServer(ohString1, ohInstance2)
 end
+
 
 --<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>----<>--
 
@@ -239,7 +385,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "SiriusKey",
       SaveKey = true,
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = "piA&dE)XkO=Hx!StzRvJBLswbs)ECP"
+      Key = ""
    }
 })
 
@@ -402,31 +548,6 @@ local Toggle = Tab:CreateToggle({
 })
 
 
-local Section = Tab:CreateSection("--// Auto Boss", true)
-local Dropdown = Tab:CreateDropdown({
-   Name = "Select Boss",
-   Options = Bosses,
-   CurrentOption = "Option 1",
-   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Option)
-		getgenv().SelectOption = Option
-   end,
-})
-local Toggle = Tab:CreateToggle({
-   Name = "Auto Boss (Soon..)",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(State)
-		Settings = State
-		if Settings then
-			while wait() and Settings do
-				print("Soon")
-			end
-		end
-   end,
-})
-
-
 local Section = Tab:CreateSection("--// Auto Hoops", true)
 local Toggle = Tab:CreateToggle({
     Name = "Auto Hoops",
@@ -484,6 +605,27 @@ local Toggle = Tab:CreateToggle({
     end,
 })
 
+
+
+
+--// Tabs: Info 
+local Tab = Window:CreateTab("Chests")
+local Section = Tab:CreateSection("--// Collect All Chest", true)
+local Paragraph = Tab:CreateParagraph({Title = "Info", Content = "Coleta os baús automaticamente."})
+
+local Toggle = Tab:CreateToggle({
+    Name = "Collect All Chest",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(State)
+		Settings = State
+		if Settings then
+			CollectAllChest()
+		else
+			FeKill()
+		end
+    end,
+})	
 
 
 
