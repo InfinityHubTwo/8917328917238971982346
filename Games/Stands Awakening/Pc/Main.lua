@@ -249,7 +249,7 @@ local Button = Tab:CreateButton({
    Callback = function()
         Rayfield:Notify({
 	        Title = "Duvidas no stands",
-	        Content = "Bem, nesta opção ao aperta em algum stand o seu time stop tera certa de 15/20 segundos",
+	        Content = "Bem, nesta opção ao aperta em algum stand o seu time stop tera cerca de 15/20 segundos",
 	        Duration = 6.5,
 	        Image = 7733964640,
 	        Actions = { -- Notification Buttons
