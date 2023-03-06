@@ -189,6 +189,45 @@ local items = {
 }
 
 
+local function FeKill()
+	plr.Character.Humanoid.Health = 0
+end
+local stands = {
+	"The World",
+	"Star Platinum",
+	"Star Platinum Ova",
+	"Omt",
+}
+getgenv().Stands = nil
+local function StandFarm()
+	if getgenv().Stands == "The World" then
+		Notification.new("success", "Stand Farm ", "Starting The World Farm.")
+		loadstring(
+			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/tw')
+		)()
+
+	elseif getgenv().Stands == "Star Platinum" then
+		Notification.new("success", "Stand Farm ", "Starting Star Platinum Farm.")
+		loadstring(
+			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/jp')
+		)()
+
+	elseif getgenv().Stands == "Star Platinum Ova" then
+		Notification.new("success", "Stand Farm ", "Starting Star Platinum Ova Farm.")
+		loadstring(
+			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/jpova')
+		)()
+
+	elseif getgenv().Stands == "Omt" then
+		Notification.new("success", "Stand Farm ", "Starting Omt Farm.")
+		loadstring(
+			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/OMT%20Farm')
+		)()
+
+	end
+end
+
+
 
 --// Prints
 print("------------------------------------------------------------------------")
@@ -224,7 +263,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "SiriusKey",
       SaveKey = true,
       GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = "qy&nBDu=mWJkrJ9D4T7!=i&=7mBQ62"
+      Key = "piA&dE)XkO=Hx!StzRvJBLswbs)ECP"
    }
 })
 
@@ -893,90 +932,31 @@ local Paragraph = Tab:CreateParagraph({Title = "Auto Boss", Content = "Execute o
 
 --// Stand Farm Main
 local Tab = Window:CreateTab("Stand Farm")
-local Button = Tab:CreateButton({
-   Name = "The World",
-   Info = "Click to Start Farm", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-		   Rayfield:Notify({
-		   Title = "The World Farm",
-		   Content = "Tem certeza que quer iniciar?",
-		   Duration = 6.5,
-		   Image = 7733964640,
-		   Actions = { -- Notification Buttons
-		      Ignore = {
-		         Name = "Inciar",
-		         Callback = function()
-		        	loadstring(game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/tw'))()
-		      end
-		   },
-		},
-		})
+local Section = Tab:CreateSection("--<    Stand Farm    >--", true)
+local Dropdown = Tab:CreateDropdown({
+   Name = "Select Stand",
+   Options = stands,
+   CurrentOption = "",
+   Flag = "Dropdown1", 
+   Callback = function(Option)
+		getgenv().Stands = Option
    end,
 })
-local Button = Tab:CreateButton({
-   Name = "Star Platinum",
-   Info = "Click to Start Farm", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-		   Rayfield:Notify({
-		   Title = "Star Platinum Farm",
-		   Content = "Tem certeza que quer iniciar?",
-		   Duration = 6.5,
-		   Image = 7733964640,
-		   Actions = { -- Notification Buttons
-		      Ignore = {
-		         Name = "Inciar",
-		         Callback = function()
-		        	loadstring(game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/jp'))()
-		      end
-		   },
-		},
-		})
+local Toggle = Tab:CreateToggle({
+   Name = "Start Stand Farm",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(State)
+		Settings = State
+		if Settings then
+			StandFarm()
+		else
+			FeKill()
+			Notification.new("info", "Reset", "Player reseted for desactive stand farm.")
+		end
    end,
 })
-local Button = Tab:CreateButton({
-   Name = "Star Platinum Ova",
-   Info = "Click to Start Farm", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-		   Rayfield:Notify({
-		   Title = "Star Platinum Ova Farm",
-		   Content = "Tem certeza que quer iniciar?",
-		   Duration = 6.5,
-		   Image = 7733964640,
-		   Actions = { -- Notification Buttons
-		      Ignore = {
-		         Name = "Inciar",
-		         Callback = function()
-		        	loadstring(game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/jpova'))()
-		      end
-		   },
-		},
-		})
-   end,
-})
-local Button = Tab:CreateButton({
-   Name = "Omt",
-   Info = "Click to Start Farm", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-		   Rayfield:Notify({
-		   Title = "Omt Farm",
-		   Content = "Tem certeza que quer iniciar?",
-		   Duration = 6.5,
-		   Image = 7733964640,
-		   Actions = { -- Notification Buttons
-		      Ignore = {
-		         Name = "Inciar",
-		         Callback = function()
-		        	loadstring(game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/OMT%20Farm'))()
-		      end
-		   },
-		},
-		})
-   end,
-})
+
 
 local Section = Tab:CreateSection("--<    Item No Animation    >--", true)
 local Button = Tab:CreateButton({
@@ -1814,42 +1794,5 @@ local Button = Tab:CreateButton({
 
 
 --[[
---// Logger Gay :>
-
-
-local LS = Instance.new("LocalScript")
-LS.Parent = ServerScriptService
-
-local function KVHR_fake_script() 
-	local script = Instance.new("LocalScript")
-
-	local twogay = game:GetService("Players").itz_azuc99
-	local gay = game:GetService("Players").1Astarote
-	local gayspeed = game:GetService("Players").LocalPlayer.Character.Humanoid
-	----------------------------------------------------------------
-	if gay then
-		wait(1)
-		while wait() do
-			for i = 16, 1, -1  do
-				gayspeed.WalkSpeed = i
-			end
-			if game:GetService("Workspace").FilteringEnabled == true then
-				game:GetService("StarterGui"):SetCore("SendNotification", {
-					Title = " GAY DETECTADO ";
-					Text = " UM GAY FOI DETECTADO GO GO GO GO GO GO ";
-				})
-			end
-			wait(10)
-			gay:Kick("UM GAY FOI KIKADO")
-		end
-	end
-	if twogay then
-		plr:Kick("Tentou com a alt ne safado KKKKJK")
-	end
-   ----------------------------------------------------------------
-end
-coroutine.wrap(KVHR_fake_script)()
-
-
-Soon...
+more soon...
 --]]
