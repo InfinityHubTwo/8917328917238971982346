@@ -47,6 +47,7 @@ elseif PlaceId == 662417684 then
 elseif PlaceId == 3956818381 then
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Ninja%20Legends/Main.lua")()
 	
+--// Arcane Odyssey
 elseif PlaceId == 12604352060 then
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Arcane%20Odyssey/Main.lua")()
 end
