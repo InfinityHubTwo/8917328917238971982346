@@ -7,14 +7,14 @@ info:
 Scripts Work: ✅
 All games works: ✅
 
-Games:
-[+] = [ { Stands Awakening } ]
-[+] = [ { Shindo Life } ]
-[+] = [ { Build a Boat For Treasure } ]
-[+] = [ { World of Stands } ]
-[+] = [ { Lucky Blocks Battlegrounds } ]
-[+] = [ { Ninja Legends } ]
-[+] = [ { Arcane Odyssey } ]
+   [-] Games
+	[+] = [ { Stands Awakening } ]
+	[+] = [ { Shindo Life } ]
+	[+] = [ { Build a Boat For Treasure } ]
+	[+] = [ { World of Stands } ]
+	[+] = [ { Lucky Blocks Battlegrounds } ]
+	[+] = [ { Ninja Legends } ]
+	[+] = [ { Arcane Odyssey } ]
 
 --]===================================================]
 
