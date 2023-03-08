@@ -14,6 +14,7 @@ Games:
 [+] = [ { World of Stands } ]
 [+] = [ { Lucky Blocks Battlegrounds } ]
 [+] = [ { Ninja Legends } ]
+[+] = [ { Arcane Odyssey } ]
 
 --]===================================================]
 
