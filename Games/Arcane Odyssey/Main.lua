@@ -657,6 +657,11 @@ local Toggle = Tab:CreateToggle({
         end;
    end,
 })
+local Paragraph = Tab:CreateParagraph({Title = "Aviso", Content = [[
+	Se o Kill Aura nao estiver funcionando.
+	Execute a gui novamente que o erro ira se ser corrigido, obrigado
+]]})
+
 local Section = Tab:CreateSection("}", true)
 
 
