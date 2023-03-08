@@ -182,4 +182,4 @@ wait(5)
 
 
 wait(4)
-Player.Character.Humanoid.WalkSpeed = 16
+FeKill()
