@@ -8,13 +8,14 @@ Scripts Work: ✅
 All games works: ✅
 
    [-] Games
-	[+] = [ { Stands Awakening } ]
-	[+] = [ { Shindo Life } ]
-	[+] = [ { Build a Boat For Treasure } ]
-	[+] = [ { World of Stands } ]
-	[+] = [ { Lucky Blocks Battlegrounds } ]
-	[+] = [ { Ninja Legends } ]
-	[+] = [ { Arcane Odyssey } ]
+    [+] = [ { Stands Awakening } ]
+    [+] = [ { Shindo Life } ]
+    [+] = [ { Build a Boat For Treasure } ]
+    [+] = [ { World of Stands } ]
+    [+] = [ { Lucky Blocks Battlegrounds } ]
+    [+] = [ { Ninja Legends } ]
+    [+] = [ { Arcane Odyssey } ]
+    [+] = [ { Tower Of Hell } ]
 
 --]===================================================]
 
