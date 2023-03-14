@@ -32,6 +32,8 @@ local CheckJump = plr.Character.Humanoid.JumpPower
 local CheckHealth = plr.Character.Humanoid.Health
 local CheckStand = plr.Backpack.ClassName == "LocalScript"
 local AntiTs = game:GetService("Lighting").TS
+local AntiRagdoll = game:GetService("ReplicatedStorage").RagdollClient
+local Fire = game:GetService("ReplicatedStorage").fire
 local Settings
 local function PrintItem()
 	print(Option, "| Item Sniperded")
@@ -230,11 +232,15 @@ end
 
 
 --// Prints
-print("------------------------------------------------------------------------")
-   print("Infinity Hub Loaded")
-   print("Heve fun")
-   print("Credits libray: Rayfield Libray / Discord Server: Sirus")
-print("------------------------------------------------------------------------")
+print[[
+	.
+
+	--<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>
+	|	Infinity Hub Loaded v 1.0.2					 |
+	|	Have fun							 |
+	|	Credits libray: Rayfield Libray / Discord Server: Sirus		 |
+	--<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>
+]]
 
 
 
@@ -1209,6 +1215,24 @@ local Button = Tab:CreateButton({
    end,
 })
 local Button = Tab:CreateButton({
+   Name = "Anti Ragdoll",
+   Interact = 'Changable',
+   Callback = function()
+		if AntiRagdoll then
+			AntiRagdoll:Destroy()
+		end
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Anti Fire",
+   Interact = 'Changable',
+   Callback = function()
+		if Fire then
+			Fire:Destroy()
+		end
+   end,
+})
+local Button = Tab:CreateButton({
    Name = "Infinite Jump",
    Info = "Click to Infinite Jump", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
@@ -1782,7 +1806,7 @@ local Button = Tab:CreateButton({
 
 
 
---// End Script
+--// End Script......
 
 
 
@@ -1793,6 +1817,5 @@ local Button = Tab:CreateButton({
 
 
 
---[[
-more soon...
---]]
+
+-- more soon -- 
