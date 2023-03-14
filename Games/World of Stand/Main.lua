@@ -258,3 +258,64 @@ local Toggle = Tab:CreateToggle({
 		end
    end,
 })
+local Toggle = Tab:CreateToggle({
+   Name = "Chest Esp",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(State)
+	Settings = State
+	if Settings then
+	-- Esp Function
+function CreateESPPart(BodyPart,color)
+local ESPPartparent = BodyPart
+local Box = Instance.new("BoxHandleAdornment")
+Box.Size = BodyPart.Size + Vector3.new(0.1, 0.1, 0.1)
+Box.Name = "ESPPart"
+Box.Adornee = ESPPartparent
+Box.Color3 = color
+Box.AlwaysOnTop = true
+Box.ZIndex = 5
+Box.Transparency = 0.8
+Box.Parent = BodyPart
+end
+
+CreateESPPart(game:GetService("Workspace").ChestSpawns["1"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["2"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["3"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["4"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["5"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["6"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["7"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["8"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["9"], Color3.fromRGB(255,255,0)) 
+CreateESPPart(game:GetService("Workspace").ChestSpawns["10"], Color3.fromRGB(255,255,0))
+CreateESPPart(game:GetService("Workspace").ChestSpawns["11"], Color3.fromRGB(255,255,0))
+CreateESPPart(game:GetService("Workspace").ChestSpawns["12"], Color3.fromRGB(255,255,0))
+CreateESPPart(game:GetService("Workspace").ChestSpawns["13"], Color3.fromRGB(255,255,0))
+CreateESPPart(game:GetService("Workspace").ChestSpawns["14"], Color3.fromRGB(255,255,0))
+CreateESPPart(game:GetService("Workspace").ChestSpawns["15"], Color3.fromRGB(255,255,0))
+CreateESPPart(game:GetService("Workspace").ChestSpawns["16"], Color3.fromRGB(255,255,0))
+
+
+
+-- Name esp
+for __,v in pairs(game:GetService("Workspace").ChestSpawns:GetChildren()) do
+if v:IsA("Model") or v:IsA("Part") or v:IsA("MeshPart") then
+local a = Instance.new("BillboardGui",v)
+a.Size = UDim2.new(1,0, 1,0)
+a.Name = "A"
+a.AlwaysOnTop = true
+local b = Instance.new("Frame",a)
+b.Size = UDim2.new(1,0, 1,0)
+b.BackgroundTransparency = 1
+b.BorderSizePixel = 0
+local c = Instance.new("TextLabel",b)
+c.Text = v.Name
+c.Size = UDim2.new(1,0, 1,0)
+c.BackgroundTransparency = 1
+c.BorderSizePixel = 0
+end
+end		
+	end
+   end,
+})
