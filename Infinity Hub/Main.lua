@@ -57,4 +57,8 @@ elseif PlaceId == 12604352060 then
 --// Tower Of hell
 elseif PlaceId == 1962086868 or 3582763398 then
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Tower%20Of%20Hell/Main.lua")()
+	
+--// Heaven Stand
+elseif PlaceId == 11981520251 then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Heaven%20Stand/Main.lua")()
 end
