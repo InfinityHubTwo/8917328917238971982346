@@ -16,6 +16,7 @@ All games works: ✅
     [+] = [ { Ninja Legends } ]
     [+] = [ { Arcane Odyssey } ]
     [+] = [ { Tower Of Hell } ]
+    [+] = [ { Heaven Stand } ]
 
 --]===================================================]
 
