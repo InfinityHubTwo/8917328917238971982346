@@ -236,9 +236,9 @@ print[[
 	.
 
 	--<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>
-	|	Infinity Hub Loaded v 1.0.2					 |
-	|	Have fun							 |
-	|	Credits libray: Rayfield Libray / Discord Server: Sirus		 |
+	|	Infinity Hub Loaded v 1.0.2					 						|
+	|	Have fun							 								|
+	|	Credits libray: Rayfield Libray / Discord Server: Sirus		 		|
 	--<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>---<>
 ]]
 
@@ -277,38 +277,35 @@ local Window = Rayfield:CreateWindow({
 
 
 --// Welcome Main
-local Tab = Window:CreateTab("Welcome")
-local Paragraph = Tab:CreateParagraph({Title = "Welcome Main", Content = "Welcome to Infinity Hub"})
+local Tab = Window:CreateTab("Welcome", 12827783428)
+local Paragraph = Tab:CreateParagraph({Title = "Bem Vindo", Content = [[
+Bem vindo ao Infinity Hub.
+Espero que goste e Aproveite :>
 
+Se quiser pode ler as regras a baixo
+]]})
+
+local Section = Tab:CreateSection("--// Regras: ", true)
+local Paragraph = Tab:CreateParagraph({Title = "Regras", Content = [[
+Regras = { 
+	[1] - | Não compartilhe a Gui com NINGUEM |
+	[2] - | Não abuse muito das opções se quiser você quem sabe |
+	[3] - | So toma cuidado mesmo 👍 |
+}
+]]})
 
 
 
 
 
 --// Stands Main
-local Tab = Window:CreateTab("Stands")
-local Button = Tab:CreateButton({
-   Name = "Duvidas?",
-   Info = "Aperte aqui se estiver com duvidas", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-        Rayfield:Notify({
-	        Title = "Duvidas no stands",
-	        Content = "Bem, nesta opção ao aperta em algum stand o seu time stop tera cerca de 15/20 segundos",
-	        Duration = 6.5,
-	        Image = 7733964640,
-	        Actions = { -- Notification Buttons
-	        	Ignore = {
-	        		Name = "Entendi!",
-	        		Callback = function()
-	        			print(plr, ": Entendi!")
-	        		end
-	        	},
-	        },
-        })
-   end,
-})
-local Section = Tab:CreateSection("--<    Stands Main    >--", true)
+local Tab = Window:CreateTab("Stands", 7072724538)
+local Paragraph = Tab:CreateParagraph({Title = "Stands", Content = [[
+Nesta opções os stands abaixo terão o seus TS(Time Stop) com certa de 15 a 20 segundos.
+]]})
+
+
+local Section = Tab:CreateSection("--// Options: Stand", true)
 local Button = Tab:CreateButton({
    Name = "Shadow Dio",
    Info = "Active", -- Speaks for itself, Remove if none.
@@ -382,7 +379,7 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Section = Tab:CreateSection("--<    D4C Main    >--", true)
+local Section = Tab:CreateSection("--// Option: D4C", true)
 local Button = Tab:CreateButton({
    Name = "D4C Clones",
    Info = "Spawn 1 Clone", -- Speaks for itself, Remove if none.
@@ -404,43 +401,14 @@ local Button = Tab:CreateButton({
 
 --// Main
 local Tab = Window:CreateTab("Main")
-local Button = Tab:CreateButton({
-   Name = "Duvidas?",
-   Info = "Se estiver com duvidas aperte aqui.", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-      Rayfield:Notify({
-         Title = "Duvidas no Main",
-         Content = "Em cada uma das opções temos um indicador (EX: // Player Main), isso quer dizer que as opções que estão ali vão muda o player e assim por diante.",
-         Duration = 6.5,
-         Image = 7733964640,
-         Actions = { -- Notification Buttons
-            Ignore = {
-               Name = "Entendi!",
-               Callback = function()
-                  print(plr,": Entendi!")
-               end
-            },
-         },
-      })
-      Rayfield:Notify({
-         Title = "Duvidas no Main Part 2",
-         Content = "muda o player e assim por diante.",
-         Duration = 6.5,
-         Image = 7733964640,
-         Actions = { -- Notification Buttons
-            Ignore = {
-               Name = "Entendi!",
-               Callback = function()
-                  print(plr,": Entendi!")
-               end
-            },
-         },
-      })
-   end,
-})
+local Paragraph = Tab:CreateParagraph({Title = "Main", Content = [[
+Aqui são as opções para você usa em si mesmo no caso no Player, ou no seu stand.
 
-local Section = Tab:CreateSection("--<    Players Main    >--", true)
+Tem funções para muitos stands para usar o quanto quiser.
+]]})
+
+
+local Section = Tab:CreateSection("--// Options: Player", true)
 local Button = Tab:CreateButton({
    Name = "Auto Block",
    Info = "Player auto block", -- Speaks for itself, Remove if none.
@@ -515,11 +483,9 @@ local Toggle = Tab:CreateToggle({
 		end
    end,
 })
-local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
---// GER / GE
-local Section = Tab:CreateSection("--<    Goldem Expirience Requiem / Golden Expirience Main    >--", true)
+local Section = Tab:CreateSection("--// Options: GER, GE", true)
 local Button = Tab:CreateButton({
    Name = "Infinite Damage Reflect / Goldem Expirience Requiem",
    Info = "Infinite Damage Reflect", -- Speaks for itself, Remove if none.
@@ -543,11 +509,9 @@ local Button = Tab:CreateButton({
 		game:GetService("ReplicatedStorage").Main.Input:FireServer(ohString1, ohString2)
    end,
 })
-local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
---// Shadow Dio
-local Section = Tab:CreateSection("--<    Shadow Dio Main    >--", true)
+local Section = Tab:CreateSection("--// Options: Shadow Dio", true)
 local Button = Tab:CreateButton({
    Name = "Shadow Dio Infinite Kinifes",
    Info = "Use Q first", -- Speaks for itself, Remove if none.
@@ -643,31 +607,11 @@ local Toggle = Tab:CreateToggle({
 		end
    end,
 })
-local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
---// Karls 
-local Section = Tab:CreateSection("--<    Karls Main    >--", true)
+local Section = Tab:CreateSection("--// Option: One More Time, Solar One More Time", true)
 local Button = Tab:CreateButton({
-   Name = "Wings ULF inf",
-   Info = "Infinite Wings", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-	    local args = {
-		    [1] = game:GetService("Players").LocalPlayer.Character.Wing1,
-		    [2] = 0
-		}
-
-		game:GetService("ReplicatedStorage").Main.Transparency:FireServer(unpack(args))
-   end,
-})
-local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
-
-
---// OMS / SMOT
-local Section = Tab:CreateSection("--<    Omt and Smot Main    >--", true)
-local Button = Tab:CreateButton({
-   Name = "Omt and Smot Drill",
+   Name = "Aura Drill attack (Z)",
    Info = "Drill Attack", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
@@ -679,11 +623,9 @@ local Button = Tab:CreateButton({
 		game:GetService("ReplicatedStorage").Main.Input:FireServer(unpack(args))
    end,
 })
-local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
---// OMS / SMOT
-local Section = Tab:CreateSection("--<    Sans Main    >--", true)
+local Section = Tab:CreateSection("--// Options: Sans", true)
 local Button = Tab:CreateButton({
    Name = "Sans teleport player limbo",
    Info = "Players teleport to limbo", -- Speaks for itself, Remove if none.
@@ -703,17 +645,14 @@ local Toggle = Tab:CreateToggle({
    Name = "Sans Sound Effect (Key T/H)",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(sansSondEffect)
-		if sansSondEffect then
-			getgenv().TogglesansSondEffect = true
-			while getgenv().TogglesansSondEffect do
-				wait(10)
-				game:GetService("ReplicatedStorage").Effects.BoneZone.Primary.reverb.SoundId = "rbxassetid://5121734927"
-				game:GetService("ReplicatedStorage").Effects.BoneZone.Primary.eoe.SoundId = "rbxassetid://5121734927"
-			end
+   Callback = function(State)
+		Settings = State
+		if Settings then
+			-- Modded
+			game:GetService("ReplicatedStorage").Effects.BoneZone.Primary.reverb.SoundId = "rbxassetid://5121734927"
+			game:GetService("ReplicatedStorage").Effects.BoneZone.Primary.eoe.SoundId = "rbxassetid://5121734927"
 		else
-			getgenv().TogglesansSondEffect = false
-			wait(20)
+			-- Normal
 			game:GetService("ReplicatedStorage").Effects.BoneZone.Primary.reverb.SoundId = "rbxassetid://401680588"
 			game:GetService("ReplicatedStorage").Effects.BoneZone.Primary.eoe.SoundId = "rbxassetid://4264104024"
 		end
@@ -721,8 +660,7 @@ local Toggle = Tab:CreateToggle({
 })
 
 
---// OMS / SMOT
-local Section = Tab:CreateSection("--<    Made in Heave Main    >--", true)
+local Section = Tab:CreateSection("--// Options: Made In Heaven", true)
 local Button = Tab:CreateButton({
    Name = "Made in Heaven Universe Reset",
    Info = "Universe Reset", -- Speaks for itself, Remove if none.
@@ -784,7 +722,6 @@ local Button = Tab:CreateButton({
 	    game:GetService("ReplicatedStorage").Main.Input:FireServer(unpack(args))
    end,
 })
-local Section = Tab:CreateSection("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------", true)
 
 
 
@@ -792,30 +729,12 @@ local Section = Tab:CreateSection("---------------------------------------------
 
 
 --// Server Remotes
-local Tab = Window:CreateTab("Server Remotes")
-local Button = Tab:CreateButton({
-   Name = "Duvidas?",
-   Info = "Se estiver com duvida aperte aqui", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-      Rayfield:Notify({
-         Title = "Duvidas no Server Remote",
-         Content = "Nesta opção demonstra as opção que ao ser executadas podem prejudicar o servidor (EX: Lag Server).",
-         Duration = 6.5,
-         Image = 4483362458,
-         Actions = { -- Notification Buttons
-            Ignore = {
-               Name = "Entendi!",
-               Callback = function()
-               print(plr, ": Entendi")
-            end
-         },
-      },
-      })
-   end,
-})
+local Tab = Window:CreateTab("Server Remotes", 12828674545)
+local Paragraph = Tab:CreateParagraph({Title = "Server Remotes", Content = [[
+Aqui as opções que você iniciar irá prejuticar o servidor EX Lag Server
+]]})
 
-local Section = Tab:CreateSection("--<    Lag Server    >--", true)
+local Section = Tab:CreateSection("--// Options: Lag Server", true)
 local Button = Tab:CreateButton({
    Name = "Lag Server",
    Info = "Need hierophant green", -- Speaks for itself, Remove if none.
@@ -863,30 +782,16 @@ local Button = Tab:CreateButton({
        },
     })
    end,
-}) 
-
-local Section = Tab:CreateSection("--<    Arena Boss    >--", true)
-local Button = Tab:CreateButton({
-   Name = "Remove Fire Parts",
-   Info = "Click to remove a fire parts", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-			game:GetService("Workspace").Map.Arena.FinalHelicopter.Fire:Destroy()
-			game:GetService("Workspace").Map.Arena.FinalHelicopter.Fire:Destro()
-			game:GetService("Workspace").Map.Arena.mini.Fire:Destroy()
-			game:GetService("Workspace").Map.Arena.mini.Fire:Destroy()
-			game:GetService("Workspace").Map.Arena.Model.Fire:Destroy()
-			game:GetService("Workspace").Map.Arena.Model.Fire:Destroy()
-			game:GetService("Workspace").Map.Arena.Model.Fire:Destroy()
-			game:GetService("Workspace").Map.Arena.Model.Fire:Destroy()
-   end,
 })
 
 
 
-
 --// Buy Items
-local Tab = Window:CreateTab("Buy Items")
+local Tab = Window:CreateTab("Buy Items", 12828624122)
+local Paragraph = Tab:CreateParagraph({Title = "Buy Item", Content = [[
+Aqui você compra os items abaixo.
+]]})
+
 local Button = Tab:CreateButton({
    Name = "Arrow",
    Info = "Click to buy", -- Speaks for itself, Remove if none.
@@ -923,13 +828,23 @@ local Button = Tab:CreateButton({
 		game:GetService("ReplicatedStorage").Purchase:FireServer(unpack(args))
    end,
 })
+local Button = Tab:CreateButton({
+   Name = "Ticket",
+   Info = "Click to buy", -- Speaks for itself, Remove if none.
+   Interact = 'Changable',
+   Callback = function()
+		local ohString1 = "Ticket"
+
+		game:GetService("ReplicatedStorage").Purchase:FireServer(ohString1)
+   end,
+})
 
 
 
 
 
 --// Auto Boss
-local Tab = Window:CreateTab("Auto Boss")
+local Tab = Window:CreateTab("Auto Boss", 12828636851)
 local Paragraph = Tab:CreateParagraph({Title = "Auto Boss", Content = "Execute o auto boss quando estiver no mapa contra o boss, execute a mesma loadstring que iniciara uma nova gui com o auto boss"})
 
 
@@ -937,8 +852,11 @@ local Paragraph = Tab:CreateParagraph({Title = "Auto Boss", Content = "Execute o
 
 
 --// Stand Farm Main
-local Tab = Window:CreateTab("Stand Farm")
-local Section = Tab:CreateSection("--<    Stand Farm    >--", true)
+local Tab = Window:CreateTab("Stand Farm", 7072707588)
+local Paragraph = Tab:CreateParagraph({Title = "Stand Farm", Content = [[
+Aqui aonde você farma stands
+]]})
+local Section = Tab:CreateSection("--// Option: Stand Farm", true)
 local Dropdown = Tab:CreateDropdown({
    Name = "Select Stand",
    Options = stands,
@@ -964,7 +882,7 @@ local Toggle = Tab:CreateToggle({
 })
 
 
-local Section = Tab:CreateSection("--<    Item No Animation    >--", true)
+local Section = Tab:CreateSection("--// Option: Item No Animation", true)
 local Button = Tab:CreateButton({
    Name = "Arrow",
    Info = "Need arrow in your hand", -- Speaks for itself, Remove if none.
@@ -994,7 +912,11 @@ local Button = Tab:CreateButton({
 
 
 --// Item Farm
-local Tab = Window:CreateTab("Item Farm")
+local Tab = Window:CreateTab("Item Farm", 7072707588)
+local Paragraph = Tab:CreateParagraph({Title = "Buy Item", Content = [[
+Aqui você farma items
+]]})
+local Section = Tab:CreateSection("--// Options: Item Farm and Grab Tools", true)
 local Toggle = Tab:CreateToggle({
    Name = "Start Item Farm / Stop",
    CurrentValue = false,
@@ -1043,8 +965,7 @@ local Toggle = Tab:CreateToggle({
    end,
 })
 
-local Section = Tab:CreateSection("--// Item Sniper", true)
-local Paragraph = Tab:CreateParagraph({Title = "Info", Content = "Esta função foi adicionada recentemente, qualquer erro ou bug avise o support."})
+local Section = Tab:CreateSection("--// Option: Item Sniper", true)
 local Dropdown = Tab:CreateDropdown({
    Name = "Select Item",
    Options = items,
@@ -1067,7 +988,11 @@ local Button = Tab:CreateButton({
 
 
 --// Teleport Main
-local Tab = Window:CreateTab("Teleports")
+local Tab = Window:CreateTab("Teleports", 10090587519)
+local Paragraph = Tab:CreateParagraph({Title = "Buy Item", Content = [[
+Aqui nas opções você da teleport nas opções a baixo
+]]})
+local Section = Tab:CreateSection("--// Options: Teleports", true)
 local Button = Tab:CreateButton({
    Name = "Bank ",
    Info = "Click to teleport", -- Speaks for itself, Remove if none.
@@ -1137,7 +1062,11 @@ local Button = Tab:CreateButton({
 
 
 --// Local Player Main
-local Tab = Window:CreateTab("Local Player")
+local Tab = Window:CreateTab("Local Player", 8797391485)
+local Paragraph = Tab:CreateParagraph({Title = "Buy Item", Content = [[
+Aqui as opções vão ser executadas no LocalPlayer(Ou seja você)
+]]})
+local Section = Tab:CreateSection("--// Options: LocalPlayer", true)
 local Slider = Tab:CreateSlider({
    Name = "WalkSpeed",
    Range = {16, 500},
@@ -1277,7 +1206,11 @@ local Button = Tab:CreateButton({
 
 
 --// Item Notifier Main
-local Tab = Window:CreateTab("Item Notifier")
+local Tab = Window:CreateTab("Item Notifier", 12828647854)
+local Paragraph = Tab:CreateParagraph({Title = "item Notifier", Content = [[
+Aqui nas opções ele ira demonstra se tem o item no mapa ou não
+]]})
+local Section = Tab:CreateSection("--// Option: Items", true)
 local Button = Tab:CreateButton({
    Name = "Check Arrow",
    Info = "Click to check", -- Speaks for itself, Remove if none.
@@ -1427,10 +1360,15 @@ local Button = Tab:CreateButton({
 
 
 --// Troll Main
-local Tab = Window:CreateTab("Troll")
-local Paragraph = Tab:CreateParagraph({Title = "Troll Main", Content = "Cada uma das opção são FE Scripts, os scripts forão feitos por Darkzin."})
+local Tab = Window:CreateTab("Troll", 12828699755)
+local Paragraph = Tab:CreateParagraph({Title = "Troll Main", Content = [[
+Aqui tem opções para você trollar as pessoas no server em que esta,
+lembrando que tem opções FE e opções visuais 
 
-local Section = Tab:CreateSection("--<    FE Scripts by Darkzin    >--", true)
+A maioria feito por mim.
+]]})
+
+local Section = Tab:CreateSection("--// Options: Fe Scripts", true)
 local Button = Tab:CreateButton({
    Name = "FE Creeper",
    Info = "Click to use Creeper script FE.", -- Speaks for itself, Remove if none.
@@ -1758,7 +1696,7 @@ local Toggle = Tab:CreateToggle({
 ------------------------------------------------
 
 
-local Section = Tab:CreateSection("--<    Visual Scripts    >--", true)
+local Section = Tab:CreateSection("--// Options: Visual Scripts", true)
 local Button = Tab:CreateButton({
    Name = "Jumpscare (Golden Freddy)",
    Info = "Click to Jumpscare.", -- Speaks for itself, Remove if none.
@@ -1803,6 +1741,16 @@ local Button = Tab:CreateButton({
       game:GetService("Players").LocalPlayer.Data.Money.Value = 4198237189273980213
    end,
 })
+
+
+
+
+--// Troll Main
+local Tab = Window:CreateTab("Settings", 7734053495)
+local Paragraph = Tab:CreateParagraph({Title = "Settings", Content = [[
+Em Breve 💤
+]]})
+
 
 
 
