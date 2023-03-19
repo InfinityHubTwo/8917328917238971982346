@@ -17,6 +17,7 @@ All games works: ✅
     [+] = [ { Arcane Odyssey } ]
     [+] = [ { Tower Of Hell } ]
     [+] = [ { Heaven Stand } ]
+    [+] = [ { Ninja Tycoon } ]
 
 --]===================================================]
 
