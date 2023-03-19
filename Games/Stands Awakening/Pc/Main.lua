@@ -7,7 +7,8 @@
 
 
 --// Notification Libray
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jxereas/UI-Libraries/main/notification_gui_library.lua", true))()
+local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
+local Notify = AkaliNotif.Notify;
 
 
 --// Others Librarys
@@ -203,25 +204,21 @@ local stands = {
 getgenv().Stands = nil
 local function StandFarm()
 	if getgenv().Stands == "The World" then
-		Notification.new("success", "Stand Farm ", "Starting The World Farm.")
 		loadstring(
 			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/tw')
 		)()
 
 	elseif getgenv().Stands == "Star Platinum" then
-		Notification.new("success", "Stand Farm ", "Starting Star Platinum Farm.")
 		loadstring(
 			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/jp')
 		)()
 
 	elseif getgenv().Stands == "Star Platinum Ova" then
-		Notification.new("success", "Stand Farm ", "Starting Star Platinum Ova Farm.")
 		loadstring(
 			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/jpova')
 		)()
 
 	elseif getgenv().Stands == "Omt" then
-		Notification.new("success", "Stand Farm ", "Starting Omt Farm.")
 		loadstring(
 			game:HttpGet('https://raw.githubusercontent.com/Alonebr/Sad-GuiV3/main/OMT%20Farm')
 		)()
@@ -400,7 +397,7 @@ local Button = Tab:CreateButton({
 
 
 --// Main
-local Tab = Window:CreateTab("Main")
+local Tab = Window:CreateTab("Main", 12834994204)
 local Paragraph = Tab:CreateParagraph({Title = "Main", Content = [[
 Aqui são as opções para você usa em si mesmo no caso no Player, ou no seu stand.
 
@@ -882,7 +879,11 @@ local Toggle = Tab:CreateToggle({
 			StandFarm()
 		else
 			FeKill()
-			Notification.new("info", "Reset", "Player reseted for desactive stand farm.")
+			Notify({
+				Description = "Player reseted for desactive stand farm.";
+				Title = "Player Reseted";
+				Duration = 5;
+			});
 		end
    end,
 })
@@ -1119,10 +1120,18 @@ local Button = Tab:CreateButton({
    Info = "Click to check player info.", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-		Notification.new("info", "Obtento informações do player", "Aguarde um momento")
+		Notify({
+			Description = "Coletando dados";
+			Title = "Player Info";
+			Duration = 5;
+		});
 		 wait(3)
 		if plr then
-			Notification.new("success", "Informações obtidas com sucesso! ", "Precione F9")
+			Notify({
+				Description = "dados coletados, se quiser ver seus dados aperte F9";
+				Title = "Player Info";
+				Duration = 5;
+			});
 			print("------------------------------------------------------------------------")
             print("{Player Info} Name:", plr)
             print("{Player Info} User Id:", plrId)
@@ -1132,7 +1141,11 @@ local Button = Tab:CreateButton({
             print("{Player Info} Stand:", CheckStand)
          print("------------------------------------------------------------------------")
 		else
-			Notification.new("error", "Error", "Você não é um jogador")
+			Notify({
+				Description = "Desculpe eu não consegui achar seu Humanoid, talvez porquer você não seja um jogador :(";
+				Title = "Player Info Error";
+				Duration = 5;
+			});
 		end
    end,
 })
@@ -1141,12 +1154,12 @@ local Button = Tab:CreateButton({
    Info = "If player as buged, use this", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-		plr.Character.Humanoid.WalkSpeed = 0
-		 wait(0.1)
-		Notification.new("info", "Force Respawn", "Aguarde um momento...")
-		 wait(2)
+		Notify({
+			Description = "Player respawned.";
+			Title = "Player Info";
+			Duration = 5;
+		});
 		game:GetService("Players").LocalPlayer.Character:Destroy()
-		Notification.new("success", "Force Respawn", "Jogador respawnado")
    end,
 })
 local Button = Tab:CreateButton({
@@ -1215,6 +1228,8 @@ local Button = Tab:CreateButton({
 local Tab = Window:CreateTab("Item Notifier", 12828647854)
 local Paragraph = Tab:CreateParagraph({Title = "item Notifier", Content = [[
 Aqui nas opções ele ira demonstra se tem o item no mapa ou não
+
+Obs: Se der "CallBack Error" quer dizer que nãp tem
 ]]})
 local Section = Tab:CreateSection("--// Option: Items", true)
 local Button = Tab:CreateButton({
@@ -1222,11 +1237,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local Arrow = game:GetService("Workspace").Arrow
+        local Arrow = game:GetService("Workspace").Arrow.ClassName == "Tool"
         if Arrow then
-         Notification.new("success", "Arrow Spawned ", "Tem flecha no mapa")
-        else
-         Notification.new("error", "Error", "Não tem flecha no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem arrow no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1235,11 +1270,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local roka = game:GetService("Workspace")["Rokakaka Fruit"]
-        if roka then
-         Notification.new("success", "Rokakaka Fruit Spawned ", "Tem Rokakaka Fruit no mapa")
-        else
-         Notification.new("error", "Error", "Não tem Rokakaka Fruit no mapa")
+        local roka = game:GetService("Workspace")["Rokakaka Fruit"].ClassName == "Tool"
+		if roka then
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem Rokakaka Fruit no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1248,11 +1303,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local RArrow = game:GetService("Workspace")["Requiem Arrow"]
+        local RArrow = game:GetService("Workspace")["Requiem Arrow"].ClassName == "Tool"
         if RArrow then
-         Notification.new("success", "Requiem Arrow Spawned ", "Tem Requiem Arrow no mapa")
-        else
-         Notification.new("error", "Error", "Não tem Requiem Arrow no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem requiem arrow no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1261,11 +1336,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local DioDiary = game:GetService("Workspace")["DIO's Diary"]
+        local DioDiary = game:GetService("Workspace")["DIO's Diary"].ClassName == "Tool"
         if DioDiary then
-         Notification.new("success", "DIO's Diary Spawned ", "Tem DIO's Diary no mapa")
-        else
-         Notification.new("error", "Error", "Não tem DIO's Diary no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem Dio's Diary no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1274,11 +1369,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local DS = game:GetService("Workspace")["DIO's Skull 2"]
+        local DS = game:GetService("Workspace")["DIO's Skull 2"].ClassName == "Tool"
         if DS then
-         Notification.new("success", "DIO's Skull 2 Spawned ", "Tem DIO's Skull 2 no mapa")
-        else
-         Notification.new("error", "Error", "Não tem DIO's Skull 2 no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem Dio's Skull 2 no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1287,11 +1402,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local HellArrow = game:GetService("Workspace")["Hell Arrow"]
+        local HellArrow = game:GetService("Workspace")["Hell Arrow"].ClassName == "Tool"
         if HellArrow then
-         Notification.new("success", "Hell Arrow Spawned ", "Tem Hell Arrow no mapa")
-        else
-         Notification.new("error", "Error", "Não tem Hell Arrow no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem hell arrow no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1302,9 +1437,29 @@ local Button = Tab:CreateButton({
    Callback = function()
         local cam = game:GetService("Workspace").Camera.ClassName == "Tool"
         if cam then
-         Notification.new("success", "Camera Spawned ", "Tem Camera no mapa")
-      else
-         Notification.new("error", "Error", "Não tem Camera no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem camera no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1313,11 +1468,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local key = game:GetService("Workspace")["Uncanny Key"]
+        local key = game:GetService("Workspace")["Uncanny Key"].ClassName == "Tool"
         if key then
-         Notification.new("success", "Uncanny Key Spawned ", "Tem Uncanny Key no mapa")
-      else
-         Notification.new("error", "Error", "Não tem Uncanny Key no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem Uncanny Key no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1326,11 +1501,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local pot = game:GetService("Workspace")["Pot Platinum's Diary"]
+        local pot = game:GetService("Workspace")["Pot Platinum's Diary"].ClassName == "Tool"
         if pot then
-         Notification.new("success", "POT Spawned ", "Tem POT no mapa")
-      else
-         Notification.new("error", "Error", "Não tem POT no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem POT no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1339,11 +1534,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local redh = game:GetService("Workspace")["Red Heart"]
+        local redh = game:GetService("Workspace")["Red Heart"].ClassName == "Tool"
         if redh then
-         Notification.new("success", "Red Heart Spawned ", "Tem Red Heart no mapa")
-      else
-         Notification.new("error", "Error", "Não tem Red Heart no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem Red Heart no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1352,11 +1567,31 @@ local Button = Tab:CreateButton({
    Info = "Click to check", -- Speaks for itself, Remove if none.
    Interact = 'Changable',
    Callback = function()
-        local trarrow = game:GetService("Workspace")["True Requiem Arrow"]
+        local trarrow = game:GetService("Workspace")["True Requiem Arrow"].ClassName == "Tool"
         if trarrow then
-         Notification.new("success", "True Requiem Arrow Spawned ", "Tem True Requiem Arrow no mapa")
-      else
-         Notification.new("error", "Error", "Não tem True Requiem Arrow no mapa")
+      		Rayfield:Notify({
+      		   Title = "Item Notifier",
+      		   Content = "Tem True Requiem Arrow no mapa, deseja se teleporta para ela? ",
+      		   Duration = 6.5,
+      		   Image = 12828647854,
+      		   Actions = { -- Notification Buttons
+      		       Ignore = {
+      		           Name = "Sim",
+      		           Callback = function()
+							for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+								if v:IsA("Tool") and v:FindFirstChild("Handle") and v.Name == "Arrow" then
+									game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Handle.CFrame
+								end
+							end
+      		           end
+      		       },
+      		       Hi = {
+      		           Name = "Não",
+      		           Callback = function()
+      		           end
+      		       },
+      		   },
+     		})
         end
    end,
 })
@@ -1581,10 +1816,17 @@ local Button = Tab:CreateButton({
                      local plrMoney = game:GetService("Players").LocalPlayer.Data.Money.Value
 
                      wait(8)
-                     Notification.new("info", "Obtendo dados...", "Aguarde um momento")
+					 Notify({
+					 	Description = "Aguarde um momento";
+					 	Title = "Player Money";
+					 	Duration = 5;
+					 });
                      wait(4)
-                     Notification.new("success", "Dados Coletados", "Se quiser saber seus dados aperte F9")
-
+					 Notify({
+					 	Description = "dados coletados, se quiser ver seus dados aperte F9";
+					 	Title = "Player Info";
+					 	Duration = 5;
+					 });
                      --// Prints
                      print("------------------------------------------------------------------------")
                         
@@ -1600,11 +1842,23 @@ local Button = Tab:CreateButton({
                      local Money2 = game:GetService("StarterGui").MenuGUI.Background.Money.TextLabel.Money
                      --// Main Code
                      wait(6.5)
-                     Notification.new("info", "Criando Variaveis", "Aguarde um momento")
+					 Notify({
+					 	Description = "Criando variaveis aguarde um momento";
+					 	Title = "Variables";
+					 	Duration = 5;
+					 });
                      wait(4)
-                     Notification.new("success", "Variaveis Criadas", "Gerando Money Locker")
+					 Notify({
+					 	Description = "Variaveis criadas";
+					 	Title = "Variables";
+					 	Duration = 5;
+					 });
                      wait(4)
-                     Notification.new("success", "Money Lockey Created", "Money Locker foi gerado aproveite")
+                     Notify({
+					 	Description = "Money Locker gerado";
+					 	Title = "Money Locker";
+					 	Duration = 5;
+					 });
                      if Money1 and Money2 then
                         Money1:Destroy()
                         Money2:Destroy()
@@ -1613,10 +1867,17 @@ local Button = Tab:CreateButton({
 
                      --// Important Menssage
                      wait(5.5)
-                     Notification.new("warning", "WARING!", "MENSAGEM IMPORTANTE")
-                     Notification.new("warning", "WARING!", "MENSAGEM IMPORTANTE")
+					 Notify({
+					 	Description = "Mensagem importante";
+					 	Title = "WARING! ";
+					 	Duration = 5;
+					 });
                      wait(2)
-                     Notification.new("info", "Money Locker Rejoin", "Você tem 5 minutos para fazer oque quiser, depois disse você será relogado")
+					 Notify({
+					 	Description = "Money locker pode ser notado pelo jogo, então você so tem 5 minutos para user, depois disso você será relogado";
+					 	Title = "Player Info";
+					 	Duration = 5;
+					 });
                      wait(300)
                      game:GetService("TeleportService"):Teleport(game.PlaceId, player)
                  end
@@ -1646,10 +1907,6 @@ local Toggle = Tab:CreateToggle({
          end
       else
          getgenv().ActiveBDToggle = false
-         Notification.new("info", "Disabling the Script", "Aguarde um pouco para desabilitarmos o script.")
-         plr.Character.Humanoid.WalkSpeed = 0
-         wait(4)
-         Notification.new("success", "Desabled Script", "Script desativado :>")
          plr.Character:Destroy()
       end
    end,
@@ -1667,10 +1924,6 @@ local Toggle = Tab:CreateToggle({
          end
       else
          getgenv().ActiveCMBToggle = false
-         Notification.new("info", "Disabling the Script", "Aguarde um pouco para desabilitarmos o script.")
-         plr.Character.Humanoid.WalkSpeed = 0
-         wait(4)
-         Notification.new("success", "Desabled Script", "Script desativado :>")
          plr.Character:Destroy()
       end
    end,
@@ -1689,10 +1942,6 @@ local Toggle = Tab:CreateToggle({
          end
       else
          getgenv().ActiveWsAuTToggle = false
-         Notification.new("info", "Disabling the Script", "Aguarde um pouco para desabilitarmos o script.")
-         plr.Character.Humanoid.WalkSpeed = 0
-         wait(4)
-         Notification.new("success", "Desabled Script", "Script desativado :>")
          plr.Character:Destroy()
       end
    end,
