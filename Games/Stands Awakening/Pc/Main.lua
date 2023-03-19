@@ -409,21 +409,8 @@ Tem funções para muitos stands para usar o quanto quiser.
 
 
 local Section = Tab:CreateSection("--// Options: Player", true)
-local Button = Tab:CreateButton({
-   Name = "Auto Block",
-   Info = "Player auto block", -- Speaks for itself, Remove if none.
-   Interact = 'Changable',
-   Callback = function()
-	    local args = {
-			[1] = "Alternate",
-			[2] = "Block"
-		}
-
-		game:GetService("ReplicatedStorage").Main.Input:FireServer(unpack(args))
-   end,
-})
 local Toggle = Tab:CreateToggle({
-   Name = "Loop Auto Block",
+   Name = "Auto Block",
    CurrentValue = false,
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(AutoBlock)
@@ -723,6 +710,25 @@ local Button = Tab:CreateButton({
    end,
 })
 
+
+local Section = Tab:CreateSection("--// Options: Oni", true)
+local Toggle = Tab:CreateToggle({
+   Name = "Oni Loop Dodge",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(State)
+	Settings = State
+	if Settings then
+	    while wait() and Settings do
+		local args = {
+    		    [1] = "Alternate",
+    		    [2] = "Dodge"
+		}
+		game:GetService("ReplicatedStorage"):WaitForChild("Main"):WaitForChild("Input"):FireServer(unpack(args))
+	    end
+	end
+   end,
+})
 
 
 
