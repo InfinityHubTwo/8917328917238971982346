@@ -27,9 +27,9 @@ local PlaceId = game.PlaceId
 
 --// Stands Awakening {
 if PlaceId == 5780309044 then
-	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Stands%20Awakening/Check/MainMapCheck.lua")()
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Stands%20Awakening/PC/Main.lua")()
 elseif PlaceId == 11423467063 then
-	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Stands%20Awakening/Check/AutoBossCheck.lua")()
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Stands%20Awakening/PC/AutoBoss.lua")()
 -- }
 	
 	
