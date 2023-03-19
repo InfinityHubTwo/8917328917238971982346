@@ -268,7 +268,7 @@ local Window = Rayfield:CreateWindow({
 
 
 --// Tabs: Info 
-local Tab = Window:CreateTab("Info")
+local Tab = Window:CreateTab("welcome", 12827783428)
 local Paragraph = Tab:CreateParagraph({Title = "Aviso", Content = [[
 Sei la so aproveita mesmo kk
 ]]})
@@ -277,7 +277,7 @@ Sei la so aproveita mesmo kk
 
 
 --// Tabs: Insta Kill 
-local Tab = Window:CreateTab("Farming")
+local Tab = Window:CreateTab("Farming", 7743866529)
 local Paragraph = Tab:CreateParagraph({Title = "Aviso", Content = [[
 Insta Kill Bosses so isso mesmo.
 Cuidado n pode te ninguem atacando o Boss se n buga.
