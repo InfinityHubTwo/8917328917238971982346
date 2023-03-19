@@ -62,7 +62,7 @@ local Window = Rayfield:CreateWindow({
 
 
 --// Auto Boss Main
-local Tab = Window:CreateTab("Auto Boss")
+local Tab = Window:CreateTab("Auto Boss", 12828636851)
 local Paragraph = Tab:CreateParagraph({Title = "Welcome to auto boss", Content = "O auto boss foi iniciado, cuidado ao executar algumas opções e ações pois pode acabar levando kick. Aproveite"})
 
 local Section = Tab:CreateSection("-<    Auto    >-")
