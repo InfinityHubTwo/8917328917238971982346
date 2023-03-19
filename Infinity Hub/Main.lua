@@ -74,4 +74,9 @@ elseif PlaceId == 1962086868 then
 --// Heaven Stand
 elseif PlaceId == 11981520251 then
 	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Heaven%20Stand/Main.lua")()
+	
+	
+--// Ninja Tycoon
+elseif PlaceId == 221718525 then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/InfinityHubTwo/8917328917238971982346/main/Obfuscate/Ninja%20Tycoon/Main.lua")()
 end
