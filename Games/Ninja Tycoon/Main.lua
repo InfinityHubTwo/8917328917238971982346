@@ -247,7 +247,8 @@ end
 getgenv().NormalBossesFarmG = nil
 NormalBossesFarm = {
 	"Tenth Beast",
-	"Jigan		-- 1 and 2",
+	"Jigan		-- Faze 1",
+	"Nisshiki Otsutsushi",
 	"Sound Ninja",
 }
 local function NormalFarm()
@@ -285,6 +286,9 @@ local function NormalFarm()
 				end
 			until 1+1==2
 		end)
+		
+		
+	elseif getgenv().NormalBossesFarmG == "Nisshiki Otsutsushi" then
 		local Mob2 = "Nisshiki Otsutsushi" -- Fase 2
 		task.spawn(function ()
 			repeat task.wait()
