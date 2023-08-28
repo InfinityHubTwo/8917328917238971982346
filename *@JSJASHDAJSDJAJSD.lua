@@ -676,7 +676,7 @@ local MyButton = OtherBox:AddButton({
     Tooltip = ''
 })
 local MyButton = OtherBox:AddButton({
-    Text = 'Get All Tools',
+    Text = 'Grab All Tools',
     Func = function()
         for i, v in pairs(workspace.Map:GetChildren()) do
             if v:IsA('Model') and v.Name == 'House' then
