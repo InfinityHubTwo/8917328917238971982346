@@ -39,7 +39,7 @@ local Libray = loadstring(game:HttpGet(repo .. 'Loader.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'ThemeMenager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'SaveMenager.lua'))()
 Libray:Notify('Script Loaded, Game: '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name, 4)
-wait(1) Libray:Notify('Welcome '..game.Players.LocalPlayer.Name, 4) wait(1) Libray:Notify('Made by InfinityMercury', 10)
+wait(1) Libray:Notify('Welcome '..game.Players.LocalPlayer.Name, 4) wait(1) Libray:Notify('Made by InfinityMercury', 10) wait(1) Libray:Notify('Keybind: J', 10)
 local Window = Library:CreateWindow({
     Title = 'Infinity Hub - Version 1.0 - '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name,
     Center = true,
@@ -69,7 +69,7 @@ FarmingBox:AddToggle('MyToggle', {
                 for i, v in pairs(workspace.Particles:GetChildren()) do
                     if v:IsA('Model') and v.Name == 'Money' then
                         game.Players.LocalPlayer.Character:PivotTo(v:GetPivot())
-                        task.wait(.5)
+                        task.wait(.2)
                     end
                 end
             end
@@ -676,21 +676,16 @@ local MyButton = OtherBox:AddButton({
     Tooltip = ''
 })
 local MyButton = OtherBox:AddButton({
-    Text = 'Grab All Tools',
+    Text = 'Get All Tools',
     Func = function()
+        for i, v in pairs(workspace:GetChildren()) do
+            if v:IsA('Tool') then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+            end
+        end
         for i, v in pairs(workspace.Map:GetChildren()) do
-            if v:IsA('Model') and v.Name == 'House' then
-                for i, x in pairs(v:GetDescendants()) do
-                    if x:IsA('Part') and x.Name == 'Handle' then
-                        local House = v
-                        local ClickDetector = x.ClickDetector
-                        local OpenValue = House.Door.Open
-
-                        if OpenValue.Value == true then
-                            fireclickdetector(ClickDetector)
-                        end
-                    end
-                end
+            if v:IsA('Tool') then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
             end
         end
     end,
@@ -699,7 +694,116 @@ local MyButton = OtherBox:AddButton({
 })
 
 
+local BuyOptionsBox = Tabs.Others:AddRightGroupbox('Auto Buy')
+local MyButton = BuyOptionsBox:AddButton({
+    Text = 'Buy Giant Ray',
+    Func = function()
+        local A_1 = "Giant Ray"
+        local A_2 = game:GetService("Workspace").Map.BuyButtons.CashButtons["Giant Ray"]
+        local Event = game:GetService("ReplicatedStorage").RemoteEvent.PurchaseRequest
+        Event:FireServer(A_1, A_2)
+    end,
+    DoubleClick = false,
+    Tooltip = ''
+})
+local MyButton = BuyOptionsBox:AddButton({
+    Text = 'Buy Shrink Ray',
+    Func = function()
+        local A_1 = "Shrink Ray"
+        local A_2 = game:GetService("Workspace").Map.BuyButtons.CashButtons["Shrink Ray"]
+        local A_3 = {
+            ["Color"] = {
+                [1] = 1,
+                [2] = 0,
+                [3] = 0.01568627543747425
+            }
+        }
+        local Event = game:GetService("ReplicatedStorage").RemoteEvent.PurchaseRequest
+        Event:FireServer(A_1, A_2, A_3)
+    end,
+    DoubleClick = false,
+    Tooltip = ''
+})
+local MyButton = BuyOptionsBox:AddButton({
+    Text = 'Buy Antigravity Hammer',
+    Func = function()
+        local ohString1 = "Antigravity Hammer"
+        local ohInstance2 = workspace.Map.BuyButtons.CashButtons["Antigravity Hammer"]
+        local ohTable3 = {
+        	["Color"] = {
+        		[1] = 1,
+        		[2] = 0,
+        		[3] = 0.01568627543747425
+        	}
+        }
+        game:GetService("ReplicatedStorage").RemoteEvent.PurchaseRequest:FireServer(ohString1, ohInstance2, ohTable3)
+    end,
+    DoubleClick = false,
+    Tooltip = ''
+})
+local MyButton = BuyOptionsBox:AddButton({
+    Text = 'Buy Gravity Hammer',
+    Func = function()
+        local ohString1 = "Gravity Hammer"
+        local ohInstance2 = workspace.Map.BuyButtons.CashButtons["Gravity Hammer"]
+        local ohTable3 = {
+        	["Color"] = {
+        		[1] = 1,
+        		[2] = 0,
+        		[3] = 0.01568627543747425
+        	}
+        }
+        game:GetService("ReplicatedStorage").RemoteEvent.PurchaseRequest:FireServer(ohString1, ohInstance2, ohTable3)end,
+    DoubleClick = false,
+    Tooltip = ''
+})
+BuyOptionsBox:AddToggle('MyToggle', {
+    Text = 'Auto Buy Shotgun',
+    Default = false,
+    Tooltip = '',
+    Callback = function(Value)
+        AutoBuyShotGun = Value
+        if AutoBuyShotGun then
+            while wait() and AutoBuyShotGun do
+                for i, v in pairs(workspace.Map:GetDescendants()) do
+                    if v:IsA('Model') and v.Name == 'ShotgunCollector' then
+                        for i, x in pairs(v:GetDescendants()) do
+                            if x:IsA('TouchTransmitter') then
+                                game.Players.LocalPlayer.Character:PivotTo(x.Parent:GetPivot())
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+})
+BuyOptionsBox:AddToggle('MyToggle', {
+    Text = 'Auto Buy Gun',
+    Default = false,
+    Tooltip = '',
+    Callback = function(Value)
+        AutoBuyShotGun = Value
+        if AutoBuyShotGun then
+            while wait() and AutoBuyShotGun do
+                for i, v in pairs(workspace.Map:GetDescendants()) do
+                    if v:IsA('Model') and v.Name == 'GunCollector' then
+                        for i, x in pairs(v:GetDescendants()) do
+                            if x:IsA('TouchTransmitter') then
+                                game.Players.LocalPlayer.Character:PivotTo(x.Parent:GetPivot())
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+})
+
+
 
 -- libray settings
 local MenuGroup = Tabs['UI Settings']:AddLeftGroupbox('Menu')
 MenuGroup:AddButton('Unload', function() Library:Unload() end)
+MenuGroup:AddLabel('Menu bind'):AddKeyPicker('MenuKeybind', { Default = 'J', NoUI = true, Text = 'Menu keybind' })
+Library.ToggleKeybind = Options.MenuKeybind
