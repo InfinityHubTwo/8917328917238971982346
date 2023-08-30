@@ -30,6 +30,26 @@ local Get_Players = function()
     end
     return plrs
 end
+local function getexploit()
+    local exploit =
+        (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
+        (secure_load and "Sentinel") or
+        (is_sirhurt_closure and "Sirhurt") or
+        (pebc_execute and "ProtoSmasher") or
+        (KRNL_LOADED and "Krnl" and 'Krnl UWP') or
+        (WrapGlobal and "WeAreDevs") or
+        (isvm and "Proxo") or
+        (shadow_env and "Shadow") or
+        (jit and "EasyExploits") or
+        (getscriptenvs and "Calamari") or
+        (unit and not syn and "Unit") or
+        (OXYGEN_LOADED and "Oxygen U") or
+        (IsElectron and "Electron") or
+        ('Valyse') or
+        ("Unsupported")
+  
+    return exploit
+  end
 
 
 
@@ -41,7 +61,7 @@ local SaveManager = loadstring(game:HttpGet(repo .. 'SaveMenager.lua'))()
 Libray:Notify('Script Loaded, Game: '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name, 4)
 wait(1) Libray:Notify('Welcome '..game.Players.LocalPlayer.Name, 4) wait(1) Libray:Notify('Made by InfinityMercury', 10) wait(1) Libray:Notify('Keybind: J', 10)
 local Window = Library:CreateWindow({
-    Title = 'Infinity Hub - Version 1.6 - '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name,
+    Title = 'Infinity Hub - Version 2.0 - '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name,
     Center = true,
     AutoShow = true,
     TabPadding = 8,
@@ -798,6 +818,33 @@ BuyOptionsBox:AddToggle('MyToggle', {
             end
         end
     end
+})
+
+
+local ModOptionsBox = Tabs.Others:AddRightGroupbox('Mod')
+addRichText(ModOptionsBox:AddLabel('<font color="#C40000">script in analysed</font>'))
+local MyButton = ModOptionsBox:AddButton({
+    Text = 'zero Cash/Slaps in shop (BETA)',
+    Func = function()
+        if getexploit() == 'syn' or 'Synapse' or 'Electron' or 'Valyse' or 'Krnl UWP' or 'Krnl' then
+            Libray:Notify('exploit checked, can use script. Exploit: '..getexploit(), 6) wait(1) Libray:Notify('Script Executed!', 4)
+            local tableValues = {'Cash','Slaps'}
+            warn(unpack(tableValues))
+
+            for i, v in pairs(getgc(true)) do
+                if (type(v)=='table' and rawget(v, 'Cash') and rawget(v, 'Slaps')) then
+                    rawset(v, 'Cash', 0)
+                    rawset(v, 'Slaps', 0)
+                end
+            end
+        else
+            Libray:Notify('exploit checked, unable to use script, Exploit: '..getexploit(), 6)
+            wait(1)
+            Libray:Notify('free exploit with decompiler: Valyse and Electron', 6)
+        end
+    end,
+    DoubleClick = false,
+    Tooltip = ''
 })
 
 
