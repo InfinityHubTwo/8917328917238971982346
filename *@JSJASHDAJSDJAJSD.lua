@@ -47,7 +47,7 @@ local function getexploit()
         (IsElectron and "Electron") or
         ('Valyse') or
         ("Unsupported")
-  
+
     return exploit
   end
 
@@ -92,6 +92,27 @@ FarmingBox:AddToggle('MyToggle', {
                         task.wait(.2)
                     end
                 end
+            end
+        end
+    end
+})
+FarmingBox:AddToggle('MyToggle', {
+    Text = 'Collect all money and deposit',
+    Default = false,
+    Tooltip = 'Click to start collecting all money',
+    Callback = function(bool)
+        CollectAllMoney = bool
+        if CollectAllMoney then
+            Libray:Notify('Collecting all money spawned in the game and deposit', 4)
+            while wait() and CollectAllMoney do
+                for i, v in pairs(workspace.Particles:GetChildren()) do
+                    if v:IsA('Model') and v.Name == 'Money' then
+                        game.Players.LocalPlayer.Character:PivotTo(v:GetPivot())
+                        task.wait(.2)
+                    end
+                end
+                local args = {[1] = {["Amount"] = 5,["Mode"] = "D"}}
+                game:GetService("ReplicatedStorage").RemoteEvent.ATM:FireServer(unpack(args))
             end
         end
     end
@@ -837,6 +858,7 @@ local MyButton = ModOptionsBox:AddButton({
                     rawset(v, 'Slaps', 0)
                 end
             end
+            game:GetService('Players').LocalPlayer.Character.Head:Destroy()
         else
             Libray:Notify('exploit checked, unable to use script, Exploit: '..getexploit(), 6)
             wait(1)
